@@ -113,12 +113,12 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
         <div className='mt-5'>
           <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
             <div className='md:w-20 md:h-20 w-16 h-16 ml-4'>
-              <Link href={`/profile/${userProfile['_id']}`}>
+              <Link href={`/profile/${userProfile?._id}`}>
                 <Image width={62} height={62} className='rounded-full' src={post.postedBy.image} alt='profile photo' layout='responsive' />
               </Link>
             </div>
             <div>
-              <Link href={`/profile/${userProfile['_id']}`}>
+              <Link href={`/profile/${userProfile?._id}`}>
                 <div className='mt-4 flex flex-col '>
                   <p className='flex gap-2 items-center md:text-md font-bold text-primary'>
                     {post.postedBy.userName} {` `}
