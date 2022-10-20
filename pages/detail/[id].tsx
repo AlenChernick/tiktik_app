@@ -110,29 +110,27 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
       </div>
 
       <div className='relative w-[1000px] md:w-[900px] lg:w-[700px]'>
-        <div className='lg:mt-20 mt-10'>
+        <div className='mt-5'>
           <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
             <div className='md:w-20 md:h-20 w-16 h-16 ml-4'>
-              <Link href='/'>
-                <>
-                  <Image width={62} height={62} className='rounded-full' src={post.postedBy.image} alt='profile photo' layout='responsive' />
-                </>
+              <Link href={`/profile/${userProfile['_id']}`}>
+                <Image width={62} height={62} className='rounded-full' src={post.postedBy.image} alt='profile photo' layout='responsive' />
               </Link>
             </div>
             <div>
-              <Link href='/'>
-                <div className='mt-3 flex flex-col gap-2'>
+              <Link href={`/profile/${userProfile['_id']}`}>
+                <div className='mt-4 flex flex-col '>
                   <p className='flex gap-2 items-center md:text-md font-bold text-primary'>
                     {post.postedBy.userName} {` `}
                     <GoVerified className='text-blue-400 text-md' />
                   </p>
-                  <p className='capitalize font-medium text-xs text-gray-500 hidden md:block'>{post.postedBy.userName}</p>
+                  <p className='capitalize font-medium text-xs text-gray-500  md:block'>{post.postedBy.userName}</p>
                 </div>
               </Link>
             </div>
           </div>
           <p className='px-10 text-lg text-gray-600 capitalize'>{post.caption}</p>
-          <div className='mt-10 px-10'>
+          <div className='my-1 px-10'>
             {userProfile && <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />}
           </div>
           <Comments comment={comment} setComment={setComment} addComment={addComment} isPostingComment={isPostingComment} comments={post.comments} />

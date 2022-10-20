@@ -34,14 +34,14 @@ const Profile: NextPage<IProps> = ({ data }) => {
 
   return (
     <div className='w-full'>
-      <div className='flex gap-6 md:gap-10 mb-4 bg-white w-full'>
-        <div className='w-16 h-16 md:w-32 md:h-32'>
+      <div className='flex gap-4 mb-4 bg-white w-full'>
+        <div className='w-16 h-16 md:w-[90px] md:h-[90px] '>
           <Image src={user.image} width={120} height={120} className='rounded-full' alt='user profile' layout='responsive' />
         </div>
-        <div className='flex flex-col justify-center'>
+        <div className='flex flex-col justify-center ml-1'>
           <p className='md:text-2xl tracking-wider flex gap-1 items-center text-md font-bold text-primary lowercase'>
             {user.userName.replaceAll(' ', '')}
-            <GoVerified className='text-blue-400' />
+            <GoVerified className='text-blue-400 lg:w-4 lg:mt-1' />
           </p>
           <p className='capitalize md:text-xl justify-center text-gray-400 text-xs'>{user.userName}</p>
         </div>

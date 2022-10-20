@@ -40,20 +40,21 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
         <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
           <div className='md:w-16 md:h-16 w-10 h-10'>
             <Link href={`/profile/${post.postedBy._id}`}>
-              <>
-                <Image width={62} height={62} className='rounded-full' src={post.postedBy.image} alt='profile photo' layout='responsive' />
-              </>
+              <Image width={62} height={62} className='rounded-full' src={post.postedBy.image} alt='profile photo' layout='responsive' />
             </Link>
           </div>
           <div>
             <Link href={`/profile/${post.postedBy._id}`}>
-              <div className='flex items-center gap-2'>
+              <div className='lg:flex items-center gap-2 mt-[6px]'>
                 <p className='flex gap-2 items-center md:text-md font-bold text-primary'>
                   {post.postedBy.userName} {` `}
                   <GoVerified className='text-blue-400 text-md' />
                 </p>
-                <p className='capitalize font-medium text-xs text-gray-500 hidden md:block'>{post.postedBy.userName}</p>
+                <p className='capitalize font-medium text-xs text-gray-500 md:block'>{post.postedBy.userName}</p>
               </div>
+            </Link>
+            <Link href={`/detail/${post._id}`}>
+              <p className='font-normal'>{post.caption}</p>
             </Link>
           </div>
         </div>
@@ -71,7 +72,7 @@ const VideoCard: NextPage<IProps> = ({ post }) => {
           </Link>
 
           {isHover && (
-            <div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] p-1'>
+            <div className='absolute bottom-1  cursor-pointer left-10 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] lg:w-[600px] p-3'>
               {playing ? (
                 <button onClick={onVideoPress}>
                   <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />

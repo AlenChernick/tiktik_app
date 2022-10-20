@@ -80,7 +80,7 @@ const Upload = () => {
             flex-col justify-center
             items-center outline-none
             mt-10 w-[260px] h-[460px]
-            p-10 cursor-pointer
+            p-1 cursor-pointer
             hover:border-red-300
             hover:bg-gray-100'
           >
@@ -90,7 +90,7 @@ const Upload = () => {
               <div>
                 {videoAsset ? (
                   <div>
-                    <video src={videoAsset.url} loop controls className='rounded-xl h-[450px] mt-16 bg-black'></video>
+                    <video src={videoAsset.url} loop controls className='rounded-xl h-[450px] bg-black'></video>
                   </div>
                 ) : (
                   <label className='cursor-pointer'>

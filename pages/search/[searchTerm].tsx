@@ -23,7 +23,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
 
   return (
     <div className='w-full'>
-      <div className='flex gap-10 mb-10 mt-10 border-b-2 border-gray-200 bg-white w-full'>
+      <div className='flex gap-10 mb-6 mt-2 border-b-2 border-gray-200 bg-white w-full'>
         <p className={`text-xl font-semibold cursor-pointer mt-2 ${accounts}`} onClick={() => setIsAccounts(true)}>
           Accounts
         </p>
@@ -32,7 +32,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
         </p>
       </div>
       {isAccounts ? (
-        <div className='md:mt-16'>
+        <div className='md:mt-2'>
           {searchedAccounts.length > 0 ? (
             searchedAccounts.map((user: IUser, idx: number) => (
               <Link href={`/profile/${user._id}`} key={idx}>
@@ -55,7 +55,7 @@ const Search = ({ videos }: { videos: Video[] }) => {
           )}
         </div>
       ) : (
-        <div className='md:mt-16 flex flex-wrap gap-6 md:justify-start'>
+        <div className='md:mt-2 flex flex-wrap gap-6 md:justify-start'>
           {videos.length ? (
             videos.map((video: Video, index) => <VideoCard post={video} key={index} />)
           ) : (
