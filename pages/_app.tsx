@@ -20,6 +20,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>TikTik - Make Your Day</title>
         <meta property='og:title' content='TikTik - Make Your Day' />
+        <link rel='icon' type='image/png' sizes='32x32' href='/favicon.ico' />
       </Head>
       <GoogleOAuthProvider clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}>
         <div className='xl:w-[1200px] m-auto overflow-hidden h-[100vh]'>
