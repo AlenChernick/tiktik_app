@@ -4,8 +4,8 @@ import { MdFavorite } from 'react-icons/md';
 import useAuthStore from '../store/authStore';
 
 interface IProps {
-  handleLike: () => void;
-  handleDislike: () => void;
+  handleLike?: () => void;
+  handleDislike?: () => void;
   likes: any[];
 }
 
@@ -23,8 +23,8 @@ const LikeButton: NextPage<IProps> = ({ likes, handleLike, handleDislike }) => {
   }, [filterLikes, likes]);
 
   return (
-    <div className=' flex gap-6'>
-      <div className='mt-4 flex flex-col justify-center items-center cursor-pointer'>
+    <div className='flex gap-6'>
+      <div className='my-4 flex flex-col justify-center items-center cursor-pointer'>
         {alreadyLiked ? (
           <div className='bg-primary rounded-full p-2 md:p-3 text-[#F51997]' onClick={handleDislike}>
             <MdFavorite className='text-lg md:text-2xl' />
@@ -34,7 +34,7 @@ const LikeButton: NextPage<IProps> = ({ likes, handleLike, handleDislike }) => {
             <MdFavorite className='text-lg md:text-2xl' />
           </div>
         )}
-        <p className='text-md font-semibold'>{likes?.length | 0}</p>
+        <p className='text-sm font-semibold text-gray-500'>{likes?.length | 0}</p>
       </div>
     </div>
   );

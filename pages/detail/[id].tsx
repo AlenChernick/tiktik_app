@@ -77,7 +77,7 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
 
   return (
     <div className='flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap '>
-      <div className='relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center'>
+      <div className='relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-black bg-no-repeat bg-cover bg-center'>
         <div className='absolute top-6 left-2 lg:left-6 flex gap-6 z-50'>
           <p className='cursor-pointer' onClick={() => router.back()}>
             <MdOutlineCancel className='text-white text-[35px]' />
@@ -114,12 +114,14 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
           <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
             <div className='md:w-20 md:h-20 w-16 h-16 ml-4'>
               <Link href={`/profile/${userProfile?._id}`}>
-                <Image width={62} height={62} className='rounded-full' src={post.postedBy.image} alt='profile photo' layout='responsive' />
+                <div>
+                  <Image width={62} height={62} className='rounded-full' src={post.postedBy.image} alt='profile photo' layout='responsive' />
+                </div>
               </Link>
             </div>
             <div>
               <Link href={`/profile/${userProfile?._id}`}>
-                <div className='mt-4 flex flex-col '>
+                <div className='lg:mt-4 mt-3 flex flex-col '>
                   <p className='flex gap-2 items-center md:text-md font-bold text-primary'>
                     {post.postedBy.userName} {` `}
                     <GoVerified className='text-blue-400 text-md' />
@@ -129,9 +131,13 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
               </Link>
             </div>
           </div>
-          <p className='px-10 text-lg text-gray-600 capitalize'>{post.caption}</p>
+          <p className='px-10 py-3 text-lg text-gray-600 capitalize'>{post.caption}</p>
           <div className='my-1 px-10'>
-            {userProfile && <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />}
+            {userProfile ? (
+              <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
+            ) : (
+              <LikeButton likes={post.likes} />
+            )}
           </div>
           <Comments comment={comment} setComment={setComment} addComment={addComment} isPostingComment={isPostingComment} comments={post.comments} />
         </div>

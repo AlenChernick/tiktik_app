@@ -61,8 +61,8 @@ const Comments: NextPage<IProps> = ({ comment, setComment, addComment, comments,
           <NoResults text='No comments yet' />
         )}
       </div>
-      {userProfile && (
-        <div className='lg:absolute lg:bottom-0 pb-6 px-2 md:px-10'>
+      {userProfile ? (
+        <div className='lg:absolute lg:bottom-0 my-6 lg:mb-3 px-2 md:px-10'>
           <form onSubmit={addComment} className='flex gap-4'>
             <input
               value={comment}
@@ -74,6 +74,14 @@ const Comments: NextPage<IProps> = ({ comment, setComment, addComment, comments,
               {isPostingComment ? 'Commenting' : 'Comment'}
             </button>
           </form>
+        </div>
+      ) : (
+        <div className='lg:absolute lg:bottom-0 my-6 lg:mb-3 px-2 md:px-10'>
+          <input
+            disabled
+            placeholder='Please log in to comment'
+            className='bg-primary px-6 py-4 text-md font-medium lg:text-xl border-2 w-[350px] md:w-[700px] lg:w-[520px] border-gray-100 rounded-lg placeholder-gray-500 placeholder:text-[#fe2c55]'
+          />
         </div>
       )}
     </div>

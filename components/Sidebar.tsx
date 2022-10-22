@@ -15,7 +15,7 @@ const Sidebar = () => {
 
   return (
     <div>
-      <div className='block xl:hidden m-2 ml-4 mt-3 text-xl cursor-pointer' onClick={() => setShowSideBar((prevState) => !prevState)}>
+      <div className='block xl:hidden ml-[1.6rem] mt-3 text-xl cursor-pointer' onClick={() => setShowSideBar((prevState) => !prevState)}>
         {showSideBar ? <ImCancelCircle /> : <AiOutlineMenu />}
       </div>
       {showSideBar && (
