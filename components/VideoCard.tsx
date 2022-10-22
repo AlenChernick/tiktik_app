@@ -52,7 +52,6 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
     if (videoRef?.current) {
       videoRef.current.muted = isVideoMuted;
     }
-    console.log(router.pathname);
   }, [isVideoMuted]);
 
   return (
