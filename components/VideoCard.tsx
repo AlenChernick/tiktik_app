@@ -12,6 +12,7 @@ import useAuthStore from '../store/authStore';
 import { BASE_URL } from '../utils';
 import axios from 'axios';
 import CommentsButton from './CommentsButton';
+import { useRouter } from 'next/router';
 
 interface IProps {
   post: Video;
@@ -24,6 +25,7 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const { userProfile }: any = useAuthStore();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const router = useRouter();
 
   const onVideoPress = () => {
     if (playing) {
@@ -50,6 +52,7 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
     if (videoRef?.current) {
       videoRef.current.muted = isVideoMuted;
     }
+    console.log(router.pathname);
   }, [isVideoMuted]);
 
   return (
@@ -87,7 +90,7 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
               src={post.video.asset.url}
               loop
               ref={videoRef}
-              className='lg:w-[320px] h-[390px] md:h-[320px] lg:h-[530px] w-[210px] rounded-2xl cursor-pointer bg-gray-100'
+              className='lg:w-[320px] h-[390px] md:h-[320px] lg:h-[530px] w-[210px] rounded-2xl cursor-pointer bg-black'
             ></video>
           </Link>
 
@@ -95,40 +98,44 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
             <div className='absolute bottom-1  cursor-pointer left-10 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] lg:w-[315px] p-3'>
               {playing ? (
                 <button onClick={onVideoPress}>
-                  <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
+                  <BsFillPauseFill className='text-white drop-shadow-xl text-2xl lg:text-4xl' />
                 </button>
               ) : (
                 <button onClick={onVideoPress}>
-                  <BsFillPlayFill className='text-black text-2xl lg:text-4xl' />
+                  <BsFillPlayFill className='text-white drop-shadow-xl text-2xl lg:text-4xl' />
                 </button>
               )}
               {isVideoMuted ? (
                 <button onClick={() => setIsVideoMuted(false)}>
-                  <HiVolumeOff className='text-black text-2xl lg:text-4xl' />
+                  <HiVolumeOff className='text-white drop-shadow-xl text-2xl lg:text-4xl' />
                 </button>
               ) : (
                 <button onClick={() => setIsVideoMuted(true)}>
-                  <HiVolumeUp className='text-black text-2xl lg:text-4xl' />
+                  <HiVolumeUp className='text-white drop-shadow-xl text-2xl lg:text-4xl' />
                 </button>
               )}
             </div>
           )}
         </div>
         <div className='relative'>
-          <div className=' absolute bottom-[45px] left-[-2px] lg:bottom-[60px]'>
-            {userProfile ? (
-              <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
-            ) : (
-              <LikeButton likes={post.likes} />
-            )}
-          </div>
-          <div className='absolute bottom-[-18px] left-[-2px]'>
-            <Link href={`/detail/${post._id}`}>
-              <div>
-                <CommentsButton comments={post.comments} />
+          {router.pathname === '/' && (
+            <>
+              <div className=' absolute bottom-[45px] left-[-2px] lg:bottom-[60px]'>
+                {userProfile ? (
+                  <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
+                ) : (
+                  <LikeButton likes={post.likes} />
+                )}
               </div>
-            </Link>
-          </div>
+              <div className='absolute bottom-[-18px] left-[-2px]'>
+                <Link href={`/detail/${post._id}`}>
+                  <div>
+                    <CommentsButton comments={post.comments} />
+                  </div>
+                </Link>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
