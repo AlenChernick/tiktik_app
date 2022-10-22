@@ -15,6 +15,13 @@ const Navbar = () => {
   const [searchValue, setSearchValue] = useState('');
   const router = useRouter();
 
+  const onLogin = (response: Object) => {
+    createOrGetUser(response, addUser);
+    if (window.innerWidth < 500) {
+      window.location.reload();
+    }
+  };
+
   const handleSearch = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (searchValue) {
@@ -71,7 +78,7 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-          <GoogleLogin onSuccess={(response) => createOrGetUser(response, addUser)} onError={() => console.log('Error')} />
+          <GoogleLogin onSuccess={(response) => onLogin(response)} onError={() => console.log('Error cannot login')} />
         )}
       </div>
     </div>
