@@ -26,6 +26,7 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
   const { userProfile }: any = useAuthStore();
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
+  const videos = document.querySelectorAll<HTMLVideoElement>('.video');
 
   const onVideoPress = () => {
     if (playing) {
@@ -48,9 +49,29 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
     }
   };
 
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const entry: any = entries[0];
+
+      if (entry.isIntersecting) {
+        entry.target.play();
+        setPlaying(true);
+      } else {
+        entry.target.pause();
+        setPlaying(false);
+      }
+    },
+    {
+      rootMargin: '-5px',
+      threshold: 1,
+    }
+  );
+
   useEffect(() => {
     if (videoRef?.current) {
       videoRef.current.muted = isVideoMuted;
+      if (router.route === '/profile/[id]') return;
+      observer.observe(videoRef.current);
     }
   }, [isVideoMuted]);
 
@@ -88,8 +109,9 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
             <video
               src={post.video.asset.url}
               loop
+              id='vid'
               ref={videoRef}
-              className='lg:w-[320px] h-[390px] md:h-[320px] lg:h-[530px] w-[210px] rounded-2xl cursor-pointer bg-black'
+              className='video lg:w-[320px] h-[390px] md:h-[320px] lg:h-[530px] w-[210px] rounded-2xl cursor-pointer bg-black'
             ></video>
           </Link>
 
