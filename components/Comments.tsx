@@ -68,7 +68,7 @@ const Comments: NextPage<IProps> = ({ comment, setComment, addComment, comments,
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               placeholder='Add comment...'
-              className='bg-primary px-6 py-4 text-md font-medium border-2 w-[250px] md:w-[700px] lg:w-[350px] border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 flex-1 rounded-lg'
+              className='bg-primary px-6 py-4 text-md font-medium border-2 w-full md:w-[700px] lg:w-[350px] border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 flex-1 rounded-lg'
             />
             <button className='text-md lg:text-xl text-gray-400 ml-1 lg:ml-14 hover:text-black' onClick={addComment}>
               {isPostingComment ? 'Commenting' : 'Comment'}
@@ -80,7 +80,7 @@ const Comments: NextPage<IProps> = ({ comment, setComment, addComment, comments,
           <input
             disabled
             placeholder='Please log in to comment'
-            className='bg-primary px-6 py-4 text-md font-medium lg:text-xl border-2 w-[350px] md:w-[700px] lg:w-[520px] border-gray-100 rounded-lg placeholder-gray-500 placeholder:text-[#fe2c55]'
+            className='bg-primary px-6 py-4 text-md font-medium lg:text-xl border-2 w-full md:w-[700px] lg:w-[520px] border-gray-100 rounded-lg placeholder-gray-500 placeholder:text-[#fe2c55]'
           />
         </div>
       )}

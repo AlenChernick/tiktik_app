@@ -13,6 +13,7 @@ import { NextPage } from 'next';
 import useAuthStore from '../../store/authStore';
 import LikeButton from '../../components/LikeButton';
 import Comments from '../../components/Comments';
+import CommentsButton from '../../components/CommentsButton';
 
 interface IProps {
   postDetails: Video;
@@ -132,12 +133,13 @@ const Detail: NextPage<IProps> = ({ postDetails }) => {
             </div>
           </div>
           <p className='px-10 py-3 text-lg text-gray-600 capitalize'>{post.caption}</p>
-          <div className='my-1 px-10'>
+          <div className='my-1 px-10 flex gap-4'>
             {userProfile ? (
               <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
             ) : (
               <LikeButton likes={post.likes} />
             )}
+            <CommentsButton comments={post.comments} />
           </div>
           <Comments comment={comment} setComment={setComment} addComment={addComment} isPostingComment={isPostingComment} comments={post.comments} />
         </div>

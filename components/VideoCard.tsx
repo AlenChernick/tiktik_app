@@ -11,6 +11,7 @@ import LikeButton from './LikeButton';
 import useAuthStore from '../store/authStore';
 import { BASE_URL } from '../utils';
 import axios from 'axios';
+import CommentsButton from './CommentsButton';
 
 interface IProps {
   post: Video;
@@ -86,7 +87,7 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
               src={postPreview.video.asset.url}
               loop
               ref={videoRef}
-              className='lg:w-[320px] h-[390px] md:h-[320px] lg:h-[530px] w-[250px] rounded-2xl cursor-pointer bg-gray-100'
+              className='lg:w-[320px] h-[390px] md:h-[320px] lg:h-[530px] w-[210px] rounded-2xl cursor-pointer bg-gray-100'
             ></video>
           </Link>
 
@@ -113,12 +114,21 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
             </div>
           )}
         </div>
-        <div className='relative lg:top-[27.5rem] right-[0.5rem] top-[20.1rem]'>
-          {userProfile ? (
-            <LikeButton likes={postPreview.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
-          ) : (
-            <LikeButton likes={postPreview.likes} />
-          )}
+        <div className='relative'>
+          <div className=' absolute bottom-[45px] left-[-2px] lg:bottom-[60px]'>
+            {userProfile ? (
+              <LikeButton likes={postPreview.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
+            ) : (
+              <LikeButton likes={postPreview.likes} />
+            )}
+          </div>
+          <div className='absolute bottom-[-18px] left-[-2px]'>
+            <Link href={`/detail/${postPreview._id}`}>
+              <div>
+                <CommentsButton comments={postPreview.comments} />
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
