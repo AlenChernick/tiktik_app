@@ -59,7 +59,7 @@ const Profile: NextPage<IProps> = ({ data }) => {
 
         <div className='flex gap-6 flex-wrap md:justify-start'>
           {videosList.length > 0 ? (
-            videosList.map((post: Video, idx: number) => <VideoCard post={post} key={idx} />)
+            videosList.map((post: Video) => <VideoCard post={post} key={post._id} />)
           ) : (
             <NoResults text={`No ${showUserVideos ? '' : 'Liked'} Videos Yet`} />
           )}
