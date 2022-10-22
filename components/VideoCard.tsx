@@ -86,7 +86,7 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
               src={postPreview.video.asset.url}
               loop
               ref={videoRef}
-              className='lg:w-[320px] h-[300px] md:h-[320px] lg:h-[530px] w-[200px] rounded-2xl cursor-pointer bg-gray-100'
+              className='lg:w-[320px] h-[390px] md:h-[320px] lg:h-[530px] w-[250px] rounded-2xl cursor-pointer bg-gray-100'
             ></video>
           </Link>
 
@@ -113,7 +113,7 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
             </div>
           )}
         </div>
-        <div className='absolute bottom-0 right-[16.5rem]'>
+        <div className='relative lg:top-[27.5rem] right-[0.5rem] top-[20.1rem]'>
           {userProfile ? (
             <LikeButton likes={postPreview.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
           ) : (
