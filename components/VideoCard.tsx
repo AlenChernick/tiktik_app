@@ -57,24 +57,24 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
       <div>
         <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
           <div className='md:w-16 md:h-16 w-10 h-10'>
-            <Link href={`/profile/${postPreview.postedBy._id}`}>
+            <Link href={`/profile/${post.postedBy._id}`}>
               <div>
-                <Image width={62} height={62} className='rounded-full' src={postPreview.postedBy.image} alt='profile photo' layout='responsive' />
+                <Image width={62} height={62} className='rounded-full' src={post.postedBy.image} alt='profile photo' layout='responsive' />
               </div>
             </Link>
           </div>
           <div>
-            <Link href={`/profile/${postPreview.postedBy._id}`}>
+            <Link href={`/profile/${post.postedBy._id}`}>
               <div className='lg:flex items-center gap-2 lg:mt-[6px] mt-0 mb-2'>
                 <p className='flex gap-2 items-center md:text-md font-bold text-primary'>
-                  {postPreview.postedBy.userName} {` `}
+                  {post.postedBy.userName} {` `}
                   <GoVerified className='text-blue-400 text-md' />
                 </p>
-                <p className='capitalize font-medium text-xs text-gray-500 md:block'>{postPreview.postedBy.userName}</p>
+                <p className='capitalize font-medium text-xs text-gray-500 md:block'>{post.postedBy.userName}</p>
               </div>
             </Link>
-            <Link href={`/detail/${postPreview._id}`}>
-              <p className='font-normal ml-[-2.9rem] lg:ml-0'>{postPreview.caption}</p>
+            <Link href={`/detail/${post._id}`}>
+              <p className='font-normal ml-[-2.9rem] lg:ml-0'>{post.caption}</p>
             </Link>
           </div>
         </div>
@@ -82,9 +82,9 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
 
       <div className='lg:ml-20 flex gap-4 relative'>
         <div onMouseEnter={() => setIsHover(true)} onMouseLeave={() => setIsHover(false)} className='rounded-3xl'>
-          <Link href={`/detail/${postPreview._id}`}>
+          <Link href={`/detail/${post._id}`}>
             <video
-              src={postPreview.video.asset.url}
+              src={post.video.asset.url}
               loop
               ref={videoRef}
               className='lg:w-[320px] h-[390px] md:h-[320px] lg:h-[530px] w-[210px] rounded-2xl cursor-pointer bg-gray-100'
@@ -117,15 +117,15 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
         <div className='relative'>
           <div className=' absolute bottom-[45px] left-[-2px] lg:bottom-[60px]'>
             {userProfile ? (
-              <LikeButton likes={postPreview.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
+              <LikeButton likes={post.likes} handleLike={() => handleLike(true)} handleDislike={() => handleLike(false)} />
             ) : (
-              <LikeButton likes={postPreview.likes} />
+              <LikeButton likes={post.likes} />
             )}
           </div>
           <div className='absolute bottom-[-18px] left-[-2px]'>
-            <Link href={`/detail/${postPreview._id}`}>
+            <Link href={`/detail/${post._id}`}>
               <div>
-                <CommentsButton comments={postPreview.comments} />
+                <CommentsButton comments={post.comments} />
               </div>
             </Link>
           </div>

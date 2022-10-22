@@ -12,20 +12,9 @@ interface IProps {
 }
 
 const Home: NextPage<IProps> = ({ videos }) => {
-  const [videosPreview, setVideosPreview] = useState(videos);
-
-  const handleVideosUpdate = async () => {
-    const { data } = await axios.get(`${BASE_URL}/api/post`);
-    setVideosPreview(data);
-  };
-
-  useEffect(() => {
-    handleVideosUpdate();
-  }, [handleVideosUpdate]);
-
   return (
     <div className='flex flex-col gap-10 videos h-full'>
-      {videosPreview.length ? videosPreview.map((video: Video) => <VideoCard post={video} key={video._id} />) : <NoResults text={'No Videos'} />}
+      {videos.length ? videos.map((video: Video) => <VideoCard post={video} key={video._id} />) : <NoResults text={'No Videos'} />}
     </div>
   );
 };
