@@ -110,7 +110,7 @@ const Upload = () => {
                       </p>
                       <p className='bg-[#F51997] text-center mt-10 rounded text-white text-md font-medium p-2 w-52 outline-none'>Select File</p>
                     </div>
-                    <input type='file' accept='.mp4,.webm,.ogg' name='upload-video' className='w-0 h-0' onChange={uploadVideo} />
+                    <input type='file' accept='.mp4' name='upload-video' className='w-0 h-0' onChange={uploadVideo} />
                   </label>
                 )}
               </div>
