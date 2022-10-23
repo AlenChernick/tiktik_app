@@ -26,7 +26,6 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
   const { userProfile }: any = useAuthStore();
   const videoRef = useRef<HTMLVideoElement>(null);
   const router = useRouter();
-  const videos = document.querySelectorAll<HTMLVideoElement>('.video');
 
   const onVideoPress = () => {
     if (playing) {
@@ -52,7 +51,6 @@ const VideoCard: NextPage<IProps> = ({ post: postPreview }) => {
   const observer = new IntersectionObserver(
     (entries) => {
       const entry: any = entries[0];
-
       if (entry.isIntersecting) {
         entry.target.play();
         setPlaying(true);

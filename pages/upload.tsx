@@ -24,12 +24,13 @@ const Upload = () => {
     const fileTypes = ['video/mp4', 'video/webm', 'video/ogg'];
 
     if (fileTypes.includes(selectedFile?.type)) {
+      setIsLoading(true);
       client.assets.upload('file', selectedFile, { contentType: selectedFile.type, filename: selectedFile.name }).then((data) => {
         setVideoAsset(data);
         setIsLoading(false);
       });
     } else {
-      setIsLoading(false);
+      // setIsLoading(false);
       setWrongFileType(true);
     }
   };
@@ -85,7 +86,7 @@ const Upload = () => {
             hover:bg-gray-100'
           >
             {isLoading ? (
-              <p>Uploading...</p>
+              <p className='text-2xl text-gray-500 font-semibold'>Uploading...</p>
             ) : (
               <div>
                 {videoAsset ? (
@@ -109,7 +110,7 @@ const Upload = () => {
                       </p>
                       <p className='bg-[#F51997] text-center mt-10 rounded text-white text-md font-medium p-2 w-52 outline-none'>Select File</p>
                     </div>
-                    <input type='file' name='upload-video' className='w-0 h-0' onChange={uploadVideo} />
+                    <input type='file' accept='.mp4,.webm,.ogg' name='upload-video' className='w-0 h-0' onChange={uploadVideo} />
                   </label>
                 )}
               </div>
